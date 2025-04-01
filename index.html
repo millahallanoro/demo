@@ -31,7 +31,7 @@
 
     /* Banner */
     .banner {
-      background-image: url('https://github.com/millahallanoro/demo/blob/main/hero_banner.png?raw=true'); /* 🔁 Replace this with your actual image path */
+      background-image: url('https://github.com/millahallanoro/demo/blob/main/hero_banner.png?raw=true'); /* Replace with your image */
       background-size: cover;
       background-position: center;
       height: 300px;
@@ -46,12 +46,54 @@
       font-size: 2.5rem;
     }
 
-    /* Content */
+    /* Main Content */
     .content {
       padding: 2em;
       text-align: center;
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
+    }
+
+    /* Categories Layout */
+    .categories {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      margin-top: 3em;
+    }
+
+    .category {
+      background-color: white;
+      flex: 0 1 calc(33.333% - 1em);
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .category img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .category h3 {
+      margin-top: 1em;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .category p {
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .category {
+        flex: 1 1 100%;
+      }
     }
 
     footer {
@@ -59,7 +101,7 @@
       color: #ccc;
       text-align: center;
       padding: 1em;
-      margin-top: 2em;
+      margin-top: 3em;
     }
   </style>
 </head>
@@ -72,7 +114,7 @@
     <a href="about.html">About</a>
   </nav>
 
-  <!-- Banner with image -->
+  <!-- Banner -->
   <div class="banner">
     <h1>Arctic Fashion</h1>
   </div>
@@ -102,7 +144,6 @@
       </div>
     </div>
   </div>
-
 
   <!-- Footer -->
   <footer>
