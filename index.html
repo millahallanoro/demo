@@ -216,6 +216,51 @@
       padding: 1em;
       margin-top: 3em;
     }
+
+    .trending {
+  margin-top: 4em;
+  text-align: center;
+}
+
+.trending h2 {
+  font-size: 1.8em;
+  margin-bottom: 1em;
+  color: #333;
+}
+
+.trending-products {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5em;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: white;
+  flex: 1;
+  min-width: 280px;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.product-card h3 {
+  margin-top: 1em;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.product-card p {
+  color: #555;
+  font-size: 0.95em;
+}
+
   </style>
 </head>
 <body>
@@ -277,6 +322,29 @@
       </div>
     </div>
   </div>
+
+  <!-- Trending Now Section -->
+<div class="trending">
+  <h2>Trending Now</h2>
+  <div class="trending-products">
+    <div class="product-card">
+      <img src="https://source.unsplash.com/400x250/?jacket,hood" alt="Arctic Storm Jacket">
+      <h3>Arctic Storm Jacket</h3>
+      <p>Our most popular hooded jacket for sub-zero adventures.</p>
+    </div>
+    <div class="product-card">
+      <img src="https://source.unsplash.com/400x250/?coat,winter" alt="Nordic Wool Coat">
+      <h3>Nordic Wool Coat</h3>
+      <p>Elegance meets insulation. A timeless winter essential.</p>
+    </div>
+    <div class="product-card">
+      <img src="https://source.unsplash.com/400x250/?boots,snow" alt="Insulated Snow Boots">
+      <h3>Insulated Snow Boots</h3>
+      <p>Pair your jacket with our ultra-warm, waterproof boots.</p>
+    </div>
+  </div>
+</div>
+
 
   <!-- Footer -->
   <footer>
