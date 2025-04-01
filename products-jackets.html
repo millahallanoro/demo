@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Winter Jackets | Arctic Fashion</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    nav {
+      background-color: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      padding: 1em 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .filter {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    .filter button {
+      padding: 0.5em 1em;
+      margin: 0.5em;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .filter button:hover {
+      background-color: #005fa3;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: space-between;
+    }
+
+    .product {
+      background: white;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex: 0 1 calc(33.333% - 1em);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .product h3 {
+      margin: 0.5em 0;
+    }
+
+    .product p {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .size-select {
+      margin-top: 0.5em;
+    }
+
+    @media (max-width: 900px) {
+      .product {
+        flex: 0 1 48%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product {
+        flex: 0 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <div class="content">
+    <h1>Winter Jackets</h1>
+
+    <!-- Gender Filter -->
+    <div class="filter">
+      <button onclick="filterProducts('all')">All</button>
+      <button onclick="filterProducts('men')">Men</button>
+      <button onclick="filterProducts('women')">Women</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="products" id="productGrid">
+
+      <!-- Men's Jackets -->
+      <div class="product" data-gender="men">
+        <img src="https://source.unsplash.com/400x300/?jacket,men,1" alt="Men's Arctic Parka">
+        <h3>Men's Arctic Parka</h3>
+        <p>Ultra-warm down parka with windproof outer shell.</p>
+        <div class="size-select">
+          <label for="size1">Size:</label>
+          <select id="size1">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="men">
+        <img src="https://source.unsplash.com/400x300/?jacket,men,2" alt="Men's Nordic Shell">
+        <h3>Men's Nordic Shell</h3>
+        <p>Lightweight and waterproof with soft fleece lining.</p>
+        <div class="size-select">
+          <label for="size2">Size:</label>
+          <select id="size2">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="men">
+        <img src="https://source.unsplash.com/400x300/?jacket,men,3" alt="Men's Eco Jacket">
+        <h3>Men's Eco Jacket</h3>
+        <p>Made from recycled materials with sustainable insulation.</p>
+        <div class="size-select">
+          <label for="size3">Size:</label>
+          <select id="size3">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="men">
+        <img src="https://source.unsplash.com/400x300/?jacket,men,4" alt="Men's Expedition Coat">
+        <h3>Men's Expedition Coat</h3>
+        <p>Designed for extreme cold. Waterproof and breathable.</p>
+        <div class="size-select">
+          <label for="size4">Size:</label>
+          <select id="size4">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="men">
+        <img src="https://source.unsplash.com/400x300/?jacket,men,5" alt="Men's Trail Blazer">
+        <h3>Men's Trail Blazer</h3>
+        <p>Perfect for hiking and everyday wear.</p>
+        <div class="size-select">
+          <label for="size5">Size:</label>
+          <select id="size5">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Women's Jackets -->
+      <div class="product" data-gender="women">
+        <img src="https://source.unsplash.com/400x300/?jacket,women,1" alt="Women's Arctic Shell">
+        <h3>Women's Arctic Shell</h3>
+        <p>Fashion-forward shell jacket with Arctic-level warmth.</p>
+        <div class="size-select">
+          <label for="size6">Size:</label>
+          <select id="size6">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="women">
+        <img src="https://source.unsplash.com/400x300/?jacket,women,2" alt="Women's Polar Down">
+        <h3>Women's Polar Down</h3>
+        <p>Thick down insulation with feminine fit and stylish hood.</p>
+        <div class="size-select">
+          <label for="size7">Size:</label>
+          <select id="size7">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="women">
+        <img src="https://source.unsplash.com/400x300/?jacket,women,3" alt="Women's Eco Trail">
+        <h3>Women's Eco Trail</h3>
+        <p>Sustainably made trail jacket with smart design.</p>
+        <div class="size-select">
+          <label for="size8">Size:</label>
+          <select id="size8">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="women">
+        <img src="https://source.unsplash.com/400x300/?jacket,women,4" alt="Women's North Coat">
+        <h3>Women's North Coat</h3>
+        <p>Elegant and warm — perfect for winter in style.</p>
+        <div class="size-select">
+          <label for="size9">Size:</label>
+          <select id="size9">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product" data-gender="women">
+        <img src="https://source.unsplash.com/400x300/?jacket,women,5" alt="Women's Snowy Trail">
+        <h3>Women's Snowy Trail</h3>
+        <p>Designed for comfort and freedom of movement.</p>
+        <div class="size-select">
+          <label for="size10">Size:</label>
+          <select id="size10">
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function filterProducts(gender) {
+      const products = document.querySelectorAll('.product');
+      products.forEach(product => {
+        if (gender === 'all' || product.dataset.gender === gender) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
