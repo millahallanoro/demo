@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arctic Loyalty Program</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    nav {
+      background-color: #1a1a1a;
+      padding: 0.5em 1.5em;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5em;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #1a1a1a;
+        padding: 1em;
+        margin-top: 1em;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: 2em auto;
+      padding: 1em;
+      background-color: white;
+      border-radius: 8px;
+    }
+
+    .loyalty-level {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 1.5em;
+      margin: 1.5em 0;
+      text-align: center;
+    }
+
+    .loyalty-level img {
+      height: 80px;
+      margin-bottom: 1em;
+    }
+
+    .loyalty-level h3 {
+      margin-bottom: 0.5em;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #ccc;
+      text-align: center;
+      padding: 1.5em;
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Arctic Fashion Logo">
+      </a>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="loyalty.html">Loyalty</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h1>Arctic Fashion Loyalty Program</h1>
+    <p>Join our Arctic Loyalty Program and earn points every time you shop. The more points you collect, the more exclusive rewards and benefits you unlock.</p>
+
+    <div class="loyalty-level">
+      <img src="images/bronze-logo.png" alt="Bronze Loyalty Badge">
+      <h3>Bronze</h3>
+      <p>New members start at Bronze level. Earn up to 99 points to stay here.</p>
+      <p><strong>Level range:</strong> 0–99 points</p>
+    </div>
+
+    <div class="loyalty-level">
+      <img src="images/silver-logo.png" alt="Silver Loyalty Badge">
+      <h3>Silver</h3>
+      <p>Start unlocking seasonal offers and early sale access.</p>
+      <p><strong>Level range:</strong> 100–249 points</p>
+    </div>
+
+    <div class="loyalty-level">
+      <img src="images/gold-logo.png" alt="Gold Loyalty Badge">
+      <h3>Gold</h3>
+      <p>Exclusive Gold perks include personal shopping tips and bonus point days.</p>
+      <p><strong>Level range:</strong> 250–499 points</p>
+    </div>
+
+    <div class="loyalty-level">
+      <img src="images/platinum-logo.png" alt="Platinum Loyalty Badge">
+      <h3>Platinum</h3>
+      <p>Our top-tier members get VIP treatment, free shipping & first access to new drops.</p>
+      <p><strong>Level range:</strong> 500+ points</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Arctic Fashion. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+  </script>
+
+</body>
+</html>
