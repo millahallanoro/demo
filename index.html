@@ -24,20 +24,29 @@
     .nav-container {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
+      flex-wrap: wrap;
     }
 
     .logo img {
-      height: 40px;
-      vertical-align: middle;
+      height: 60px; /* Made the logo bigger */
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       gap: 1.5em;
-      margin-left: 2em;
     }
 
     .nav-links a {
@@ -82,6 +91,48 @@
 
     .dropdown-content a:hover {
       background-color: #f4f4f4;
+    }
+
+    /* Responsive Nav */
+    @media (max-width: 900px) {
+      .nav-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #1a1a1a;
+        padding: 1em;
+        margin-top: 1em;
+      }
+
+      .nav-links a {
+        margin: 0.5em 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: none;
+      }
+
+      .dropdown.open .dropdown-content {
+        display: block;
+      }
     }
 
     /* Banner */
@@ -158,24 +209,6 @@
       background-color: #005fa3;
     }
 
-    @media (max-width: 900px) {
-      .categories {
-        flex-direction: column;
-      }
-
-      .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        margin-left: 0;
-        margin-top: 1em;
-        flex-direction: column;
-        gap: 0.75em;
-      }
-    }
-
     footer {
       background-color: #1a1a1a;
       color: #ccc;
@@ -193,10 +226,13 @@
       <a href="index.html" class="logo">
         <img src="https://github.com/millahallanoro/demo/blob/main/Arctic%20Fashion%20Logo%20NEW2%20white%20text.png?raw=true" alt="Arctic Fashion Logo">
       </a>
-      <div class="nav-links">
+
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+      <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <div class="dropdown">
-          <a href="products.html">Products ▾</a>
+          <a href="products.html" onclick="toggleDropdown(event)">Products ▾</a>
           <div class="dropdown-content">
             <a href="products-jackets.html">Winter Jackets</a>
             <a href="#">Wool Sweaters</a>
@@ -244,6 +280,19 @@
   <footer>
     &copy; 2025 Arctic Fashion. All rights reserved.
   </footer>
+
+  <!-- JavaScript for menu toggle -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+
+    function toggleDropdown(event) {
+      event.preventDefault();
+      const dropdown = event.target.closest('.dropdown');
+      dropdown.classList.toggle('open');
+    }
+  </script>
 
 </body>
 </html>
