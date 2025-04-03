@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accessories | Arctic Fashion</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    nav {
+      background-color: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      padding: 1em 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .filter {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    .filter button {
+      padding: 0.5em 1em;
+      margin: 0.5em;
+      background-color: #6f6d8e;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .filter button:hover {
+      background-color: #5e5c79;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: space-between;
+    }
+
+    .product {
+      background: white;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex: 0 1 calc(33.333% - 1em);
+      box-sizing: border-box;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .product h3 {
+      margin: 0.5em 0;
+    }
+
+    .product p {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .size-note {
+      margin-top: 0.5em;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 900px) {
+      .product {
+        flex: 0 1 48%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product {
+        flex: 0 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="loyalty.html">Loyalty</a>
+  </nav>
+
+  <div class="content">
+    <h1>Accessories</h1>
+
+    <div class="filter">
+      <button onclick="filterProducts('all')">All</button>
+      <button onclick="filterProducts('men')">Men</button>
+      <button onclick="filterProducts('women')">Women</button>
+    </div>
+
+    <div class="products" id="productGrid"></div>
+  </div>
+
+  <script>
+    const products = [
+      { gender: 'men', name: "Men's Wool Beanie", image: "https://source.unsplash.com/400x300/?beanie,men" },
+      { gender: 'men', name: "Men's Arctic Gloves", image: "https://source.unsplash.com/400x300/?gloves,men" },
+      { gender: 'men', name: "Men's Winter Scarf", image: "https://source.unsplash.com/400x300/?scarf,men" },
+      { gender: 'men', name: "Men's Fleece Neckwarmer", image: "https://source.unsplash.com/400x300/?neckwarmer,men" },
+      { gender: 'men', name: "Men's Thermal Mittens", image: "https://source.unsplash.com/400x300/?mittens,men" },
+      { gender: 'women', name: "Women's Arctic Beanie", image: "https://source.unsplash.com/400x300/?beanie,women" },
+      { gender: 'women', name: "Women's Wool Scarf", image: "https://source.unsplash.com/400x300/?scarf,women" },
+      { gender: 'women', name: "Women's Nordic Mittens", image: "https://source.unsplash.com/400x300/?mittens,women" },
+      { gender: 'women', name: "Women's Thermal Gloves", image: "https://source.unsplash.com/400x300/?gloves,women" },
+      { gender: 'women', name: "Women's Fleece Headband", image: "https://source.unsplash.com/400x300/?headband,women" }
+    ];
+
+    const container = document.getElementById('productGrid');
+
+    function renderProducts(gender) {
+      container.innerHTML = '';
+      products
+        .filter(p => gender === 'all' || p.gender === gender)
+        .forEach((p, i) => {
+          const card = document.createElement('div');
+          card.className = 'product';
+          card.innerHTML = `
+            <img src="${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>Essential Arctic accessory crafted for comfort and warmth.</p>
+            <p class="size-note">One size fits all</p>
+          `;
+          container.appendChild(card);
+        });
+    }
+
+    function filterProducts(gender) {
+      renderProducts(gender);
+    }
+
+    // Load all on page load
+    renderProducts('all');
+  </script>
+
+</body>
+</html>
