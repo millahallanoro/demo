@@ -15,6 +15,127 @@
       text-align: center;
     }
 
+     /* Navigation */
+    nav {
+      background-color: #1a1a1a;
+      padding: 0.5em 1.5em;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 60px; /* Made the logo bigger */
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5em;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      min-width: 180px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      text-align: left;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 0.75em 1em;
+      display: block;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f4f4f4;
+    }
+
+    /* Responsive Nav */
+    @media (max-width: 900px) {
+      .nav-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #1a1a1a;
+        padding: 1em;
+        margin-top: 1em;
+      }
+
+      .nav-links a {
+        margin: 0.5em 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: none;
+      }
+
+      .dropdown.open .dropdown-content {
+        display: block;
+      }
+    }
+
+
     .cart-item {
       background: white;
       padding: 1em;
@@ -47,13 +168,32 @@
   </style>
 </head>
 <body>
+<!-- Navigation -->
   <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="https://github.com/millahallanoro/demo/blob/main/Arctic%20Fashion%20Logo%20NEW2%20white%20text.png?raw=true" alt="Arctic Fashion Logo">
+      </a>
+
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+     <div class="nav-links" id="navLinks">
   <a href="index.html">Home</a>
-  <a href="products.html">Products</a>
+  <div class="dropdown">
+    <a href="products.html" onclick="toggleDropdown(event)">Products ▾</a>
+    <div class="dropdown-content">
+      <a href="products-jackets.html">Winter Jackets</a>
+      <a href="products-sweaters.html">Wool Sweaters</a>
+      <a href="products-accessories.html">Accessories</a>
+    </div>
+  </div>
   <a href="about.html">About</a>
   <a href="loyalty.html">Loyalty</a>
   <a href="cart.html">View Cart</a>
-</nav>
+
+</div>
+    </div>
+  </nav>
 
   <h1>Your Shopping Cart</h1>
   <div id="cart"></div>
