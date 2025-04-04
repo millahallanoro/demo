@@ -136,5 +136,24 @@
     </div>
   </div>
 
+  <script>
+  document.querySelector('button').addEventListener('click', () => {
+    const size = document.getElementById('size').value;
+    const product = {
+      name: "Men's Trail Blazer",
+      size: size,
+      image: "https://github.com/millahallanoro/demo/blob/main/Mens_Trail_Blazer.png?raw=true",
+      quantity: 1
+    };
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert('Product added to cart!');
+  });
+</script>
+
+
 </body>
 </html>
