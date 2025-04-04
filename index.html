@@ -286,7 +286,7 @@
   </div>
   <a href="about.html">About</a>
   <a href="loyalty.html">Loyalty</a>
-  <a href="cart.html">View Cart</a>
+  <a href="cart.html">View Cart (<span id="cart-count">0</span>)</a>
 
 </div>
     </div>
@@ -414,6 +414,20 @@
       dropdown.classList.toggle('open');
     }
   </script>
+  <script>
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = cart.length;
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+      cartCountElement.textContent = count;
+    }
+  }
+
+  // Run it on page load
+  updateCartCount();
+</script>
+
 
 </body>
 </html>
