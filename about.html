@@ -31,10 +31,10 @@
     }
 
     .banner {
-      background-image: url('https://github.com/millahallanoro/demo/blob/main/arctic_fashion_about2.png?raw=true');
+      background-image: url('images/about-banner.jpg');
       background-size: cover;
       background-position: center;
-      height: 300px;
+      height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -47,22 +47,51 @@
     }
 
     .content {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 2em auto;
       padding: 1em;
-      background-color: white;
+    }
+
+    .intro-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      margin-bottom: 3em;
+      align-items: center;
+    }
+
+    .intro-section img,
+    .values-section img {
+      width: 100%;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 500px;
     }
 
-    .content h2 {
-      font-size: 2rem;
-      margin-bottom: 0.5em;
-    }
-
-    .content p {
+    .intro-text,
+    .values-text {
+      flex: 1;
       font-size: 1.1em;
       line-height: 1.6;
+    }
+
+    .values-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+
+    @media (max-width: 768px) {
+      .intro-section,
+      .values-section {
+        flex-direction: column;
+      }
+
+      .intro-section img,
+      .values-section img {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -82,21 +111,37 @@
     <h1>About Arctic Fashion</h1>
   </div>
 
-  <!-- Page Content -->
+  <!-- Intro with Image on Left -->
   <div class="content">
-    <h2>Born in the Cold. Worn by the Bold.</h2>
-    <p>
-      Born where winter whispers and the wind bites, Arctic Fashion is more than just outerwear — it’s a mindset.
-    </p>
-    <p>
-      Inspired by the raw beauty of the Nordic wilderness and built for those who seek both adventure and elegance, we design clothing that blends functionality with bold, minimalist style. From icy trails to city streets, our garments are made to move with you.
-    </p>
-    <p>
-      Every stitch, every seam, and every fabric choice reflects our commitment to sustainability, comfort, and performance. We believe in fashion that endures — timeless in design and powerful in purpose.
-    </p>
-    <p>
-      Welcome to Arctic Fashion.
-    </p>
+    <div class="intro-section">
+      <img src="images/about-section-1.jpg" alt="Arctic Fashion design process">
+      <div class="intro-text">
+        <h2>Born in the Cold. Worn by the Bold.</h2>
+        <p>
+          Born where winter whispers and the wind bites, Arctic Fashion is more than just outerwear — it’s a mindset.
+        </p>
+        <p>
+          Inspired by the raw beauty of the Nordic wilderness and built for those who seek both adventure and elegance, we design clothing that blends functionality with bold, minimalist style. From icy trails to city streets, our garments are made to move with you.
+        </p>
+        <p>
+          Every stitch, every seam, and every fabric choice reflects our commitment to sustainability, comfort, and performance.
+        </p>
+      </div>
+    </div>
+
+    <!-- Values with Text on Left -->
+    <div class="values-section">
+      <div class="values-text">
+        <h2>Crafted with Purpose</h2>
+        <p>
+          Arctic Fashion stands at the crossroads of nature and innovation. Each piece is built to last, made with sustainable materials, and designed to empower individuals who live with purpose.
+        </p>
+        <p>
+          We believe fashion should not only express who you are — it should also protect what you love. That’s why we’re committed to ethical practices, climate-conscious production, and timeless Nordic style.
+        </p>
+      </div>
+      <img src="images/about-section-2.jpg" alt="Sustainable arctic materials">
+    </div>
   </div>
 
 </body>
