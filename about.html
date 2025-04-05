@@ -52,6 +52,32 @@
       padding: 1em;
     }
 
+    .video-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  align-items: center;
+  margin-top: 3em;
+}
+
+.video-text,
+.video-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.video-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+}
+
+@media (max-width: 768px) {
+  .video-section {
+    flex-direction: column;
+  }
+}
+
+
     .intro-section {
       display: flex;
       flex-wrap: wrap;
@@ -129,29 +155,25 @@
       </div>
     </div>
 
-    <!-- Values with Text on Left -->
-    <div class="values-section">
-      <div class="values-text">
-        <h2>Crafted with Purpose</h2>
-        <p>
-          Arctic Fashion stands at the crossroads of nature and innovation. Each piece is built to last, made with sustainable materials, and designed to empower individuals who live with purpose.
-        </p>
-        <p>
-          We believe fashion should not only express who you are — it should also protect what you love. That’s why we’re committed to ethical practices, climate-conscious production, and timeless Nordic style.
-        </p>
-      </div>
-     <div class="content video-section">
-  <div class="video-text-wrapper">
-    <!-- Video (left) -->
-    <div class="video-column">
-      <video controls width="100%" style="border-radius: 8px;">
-        <source src="arctic-fashion_video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
-    </div>
+   <!-- Video Section: Text Left, Video Right -->
+<div class="video-section">
+  <div class="video-text">
+    <h2>Watch Our Story</h2>
+    <p>
+      Discover how Arctic Fashion combines bold design, performance, and sustainability to create clothing that's as functional as it is beautiful. In this short film, we take you behind the scenes of our journey — from sketches and stitching to snowy slopes and city streets.
+    </p>
+    <p>
+      Every piece we make carries a story — of exploration, resilience, and purpose.
+    </p>
   </div>
+  <div class="video-container">
+    <video controls style="width: 100%; border-radius: 8px;">
+      <source src="arctic-fashion_video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
 
 </body>
 </html>
