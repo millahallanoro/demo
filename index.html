@@ -442,12 +442,8 @@
  </script>
  
  <script>
-  window.onload = function () {
-    const waitForSalesforce = setInterval(() => {
-      if (typeof SalesforceInteractions !== 'undefined' && typeof c360a === 'function') {
-        clearInterval(waitForSalesforce);
-
-        SalesforceInteractions.init({
+ 
+  SalesforceInteractions.init({
           consents: [{
             provider: 'OneTrust',
             purpose: 'Tracking',
