@@ -481,48 +481,40 @@
 
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-    const waitForSalesforce = setInterval(async () => {
-      if (window.SalesforceInteractions && typeof c360a === 'function') {
-        clearInterval(waitForSalesforce);
+    if (window.SalesforceInteractions) {
+      SalesforceInteractions.init({
+        consents: [{
+          provider: 'OneTrust',
+          purpose: 'Tracking',
+          status: SalesforceInteractions.ConsentStatus.OptIn
+        }]
+      }).then(() => {
+        const deviceId = c360a('getDeviceId');
+        const sessionId = c360a('getSessionId');
 
-        try {
-          await SalesforceInteractions.init({
-            consents: [{
-              provider: 'OneTrust',
-              purpose: 'Tracking',
-              status: SalesforceInteractions.ConsentStatus.OptIn
-            }]
-          });
+        const event = {
+          eventType: "pageView",
+          eventId: crypto.randomUUID(),
+          dateTime: new Date().toISOString(),
+          category: "browse",
+          interactionName: "Home Page View",
+          deviceId: deviceId,
+          sessionId: sessionId,
+          pageName: "Home",
+          pageType: "landing",
+          pageUrl: window.location.href
+        };
 
-          console.log('Salesforce Beacon initialized.');
-
-          const deviceId = await c360a('getDeviceId');
-          const sessionId = await c360a('getSessionId');
-
-          const event = {
-            eventType: "pageView",
-            eventId: crypto.randomUUID(),
-            dateTime: new Date().toISOString(),
-            category: "browse",
-            interactionName: "Home Page View",
-            deviceId,
-            sessionId,
-            pageName: "Home",
-            pageType: "landing",
-            pageUrl: window.location.href
-          };
-
-          c360a('sendEvent', event);
-          console.log('Event sent:', event);
-        } catch (error) {
-          console.error('Error initializing SalesforceInteractions or sending event:', error);
-        }
-      } else {
-        console.log('Waiting for SalesforceInteractions and c360a...');
-      }
-    }, 100);
+        // Send the event
+        c360a('sendEvent', event);
+        console.log('Event sent to Data Cloud:', event);
+      });
+    } else {
+      console.error('SalesforceInteractions not loaded');
+    }
   });
 </script>
+
 
 
 
