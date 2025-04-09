@@ -441,8 +441,8 @@
    updateCartCount();
  </script>
  
-  <script>
-  window.addEventListener('DOMContentLoaded', () => {
+ <script>
+  window.onload = function () {
     const waitForSalesforce = setInterval(() => {
       if (typeof SalesforceInteractions !== 'undefined' && typeof c360a === 'function') {
         clearInterval(waitForSalesforce);
@@ -476,7 +476,7 @@
         console.log('⏳ Waiting for SalesforceInteractions and c360a...');
       }
     }, 100);
-  });
+  };
 </script>
 
  
