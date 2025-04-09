@@ -442,35 +442,35 @@
 </script>
 
 <script>
-        SalesforceInteractions.init({
-          consents: [{
-            provider: 'OneTrust',
-            purpose: 'Tracking',
-            status: SalesforceInteractions.ConsentStatus.OptIn
-          }]
-        }).then(() => {
-          console.log('✅ Salesforce Beacon initialized');
+        if (typeof SalesforceInteractions !== 'undefined' && typeof c360a !== 'undefined') {
+  SalesforceInteractions.init({
+    consents: [{
+      provider: 'OneTrust',
+      purpose: 'Tracking',
+      status: SalesforceInteractions.ConsentStatus.OptIn
+    }]
+  }).then(() => {
+    console.log('✅ Salesforce Beacon initialized');
 
-          const event = {
-            eventType: 'pageView',
-            eventId: crypto.randomUUID(),
-            dateTime: new Date().toISOString(),
-            category: 'browse',
-            interactionName: 'Home Page View',
-            deviceId: c360a('getDeviceId'),
-            sessionId: c360a('getSessionId'),
-            pageName: 'Home',
-            pageType: 'landing',
-            pageUrl: window.location.href
-          };
+    const event = {
+      eventType: 'pageView',
+      eventId: crypto.randomUUID(),
+      dateTime: new Date().toISOString(),
+      category: 'browse',
+      interactionName: 'Home Page View',
+      deviceId: c360a('getDeviceId'),
+      sessionId: c360a('getSessionId'),
+      pageName: 'Home',
+      pageType: 'landing',
+      pageUrl: window.location.href
+    };
 
-          c360a('sendEvent', event);
-          console.log('Event sent:', event);
-        });
-      } else {
-        console.log('Waiting for SalesforceInteractions and c360a...');
-      }
-    }, 100);
+    c360a('sendEvent', event);
+    console.log('📡 Event sent:', event);
+  });
+} else {
+  console.log('⏳ Waiting for SalesforceInteractions and c360a...');
+}
   </script>
 
 
