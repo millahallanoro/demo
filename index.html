@@ -271,7 +271,7 @@
 
 
   </style>
-<script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js" defer></script>
+<script defer src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
 
   <script>
     window.addEventListener('load', function () {
@@ -457,23 +457,41 @@
 </script>
 
 <script>
-  window.addEventListener('load', function () {
-    if (typeof c360a !== 'undefined') {
-      c360a('sendEvent', {
-        type: 'browse',
-        category: 'Engagement',
-        eventType: 'view',
-        eventId: 'browse-' + Date.now(),
-        dateTime: new Date().toISOString(),
-        deviceId: 'web-' + Math.random().toString(36).substring(2),
-        sessionId: 'sess-' + Math.random().toString(36).substring(2),
-        pageName: 'Homepage',
-        pageType: 'landing',
-        pageUrl: window.location.href
-      });
-    } else {
-      console.warn('c360a beacon not loaded yet.');
-    }
+  window.addEventListener('DOMContentLoaded', () => {
+    // Wait for the beacon to be ready
+    const waitForSalesforce = setInterval(() => {
+      if (window.SalesforceInteractions && typeof c360a === 'function') {
+        clearInterval(waitForSalesforce);
+
+        SalesforceInteractions.init({
+          consents: [{
+            provider: 'OneTrust',
+            purpose: 'Tracking',
+            status: SalesforceInteractions.ConsentStatus.OptIn
+          }]
+        }).then(() => {
+          console.log('Salesforce Beacon initialized.');
+
+          const event = {
+            eventType: "pageView",
+            eventId: crypto.randomUUID(),
+            dateTime: new Date().toISOString(),
+            category: "browse",
+            interactionName: "Home Page View",
+            deviceId: c360a('getDeviceId'),
+            sessionId: c360a('getSessionId'),
+            pageName: "Home",
+            pageType: "landing",
+            pageUrl: window.location.href
+          };
+
+          c360a('sendEvent', event);
+          console.log('Event sent:', event);
+        });
+      } else {
+        console.log('Waiting for SalesforceInteractions and c360a...');
+      }
+    }, 100);
   });
 </script>
 
