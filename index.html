@@ -441,12 +441,7 @@
   updateCartCount();
 </script>
 
-  <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const waitForSalesforce = setInterval(() => {
-      if (window.SalesforceInteractions && typeof c360a === 'function') {
-        clearInterval(waitForSalesforce);
-
+<script>
         SalesforceInteractions.init({
           consents: [{
             provider: 'OneTrust',
@@ -470,15 +465,13 @@
           };
 
           c360a('sendEvent', event);
-          console.log('📡 Event sent:', event);
+          console.log('Event sent:', event);
         });
       } else {
-        console.log('⏳ Waiting for SalesforceInteractions and c360a...');
+        console.log('Waiting for SalesforceInteractions and c360a...');
       }
     }, 100);
-  });
-</script>
-
+  </script>
 
 
 
