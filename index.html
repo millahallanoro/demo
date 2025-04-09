@@ -442,10 +442,6 @@
 </script>
 
   <script>
-    const waitForBeacon = setInterval(() => {
-      if (typeof SalesforceInteractions !== 'undefined' && typeof c360a === 'function') {
-        clearInterval(waitForBeacon);
-
         SalesforceInteractions.init({
           consents: [{
             provider: 'OneTrust',
