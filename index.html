@@ -274,43 +274,36 @@
 <script defer src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
 
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    // Wait for the beacon to be ready
-    const waitForSalesforce = setInterval(() => {
-      if (window.SalesforceInteractions && typeof c360a === 'function') {
-        clearInterval(waitForSalesforce);
+  window.addEventListener('load', function () {
+    if (typeof SalesforceInteractions !== 'undefined') {
+      SalesforceInteractions.init({
+        consents: [{
+          provider: 'OneTrust',
+          purpose: 'Tracking',
+          status: SalesforceInteractions.ConsentStatus.OptIn
+        }]
+      }).then(() => {
+        console.log('init successful');
 
-        SalesforceInteractions.init({
-          consents: [{
-            provider: 'OneTrust',
-            purpose: 'Tracking',
-            status: SalesforceInteractions.ConsentStatus.OptIn
-          }]
-        }).then(() => {
-          console.log('Salesforce Beacon initialized.');
-
-          const event = {
-            eventType: "pageView",
-            eventId: crypto.randomUUID(),
-            dateTime: new Date().toISOString(),
-            category: "browse",
-            interactionName: "Home Page View",
-            deviceId: c360a('getDeviceId'),
-            sessionId: c360a('getSessionId'),
-            pageName: "Home",
-            pageType: "landing",
-            pageUrl: window.location.href
-          };
-
-          c360a('sendEvent', event);
-          console.log('Event sent:', event);
+        // Example event
+        c360a('sendEvent', {
+          type: 'browse',
+          category: 'Engagement',
+          eventType: 'pageView',
+          sessionId: 'my-session-id',
+          deviceId: 'my-device-id',
+          dateTime: new Date().toISOString(),
+          eventId: crypto.randomUUID?.() || Date.now().toString(),
+          pageName: 'Home',
+          pageUrl: window.location.href
         });
-      } else {
-        console.log('Waiting for SalesforceInteractions and c360a...');
-      }
-    }, 100);
+      });
+    } else {
+      console.warn('SalesforceInteractions not loaded yet');
+    }
   });
 </script>
+
 
 
 </head>
