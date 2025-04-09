@@ -1,142 +1,491 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arctic Fashion</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
-    }
-
-    nav {
-      background-color: #1a1a1a;
-      padding: 0.5em 1.5em;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5em;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .banner {
-      background-image: url('https://github.com/millahallanoro/demo/blob/main/hero_banner2.png?raw=true');
-      background-size: cover;
-      background-position: center;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 1px 1px 4px #000;
-    }
-
-    .banner h1 {
-      font-size: 2.5rem;
-    }
-
-    .content {
-      padding: 2em;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #1a1a1a;
-      color: #ccc;
-      text-align: center;
-      padding: 1em;
-      margin-top: 3em;
-    }
-  </style>
-
-  <!-- Load Salesforce Web Beacon -->
-  <script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
-</head>
-
-<body>
-  <nav>
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <img src="https://github.com/millahallanoro/demo/blob/main/Arctic%20Fashion%20Logo%20NEW2%20white%20text.png?raw=true" alt="Arctic Fashion Logo">
-      </a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="about.html">About</a>
-        <a href="loyalty.html">Loyalty</a>
-        <a href="cart.html">Cart</a>
-      </div>
-    </div>
-  </nav>
-
-  <div class="banner">
-    <h1>Arctic Fashion</h1>
-  </div>
-
-  <div class="content">
-    <h2>Where Style Meets the Cold</h2>
-    <p>Explore our winter collection and experience the Arctic vibe wherever you go.</p>
-  </div>
-
-  <footer>
-    &copy; 2025 Arctic Fashion. All rights reserved.
-  </footer>
-
-  <!-- Web Beacon Initialization + PageView Event -->
-  <script>
-    const waitForBeacon = setInterval(() => {
-      if (typeof SalesforceInteractions !== 'undefined' && typeof c360a === 'function') {
-        clearInterval(waitForBeacon);
-
-        SalesforceInteractions.init({
-          consents: [{
-            provider: 'OneTrust',
-            purpose: 'Tracking',
-            status: SalesforceInteractions.ConsentStatus.OptIn
-          }]
-        }).then(() => {
-          console.log('✅ Salesforce Beacon initialized');
-
-          const event = {
-            eventType: 'pageView',
-            eventId: crypto.randomUUID(),
-            dateTime: new Date().toISOString(),
-            category: 'browse',
-            interactionName: 'Home Page View',
-            deviceId: c360a('getDeviceId'),
-            sessionId: c360a('getSessionId'),
-            pageName: 'Home',
-            pageType: 'landing',
-            pageUrl: window.location.href
-          };
-
-          c360a('sendEvent', event);
-          console.log('📡 Event sent:', event);
-        });
-      } else {
-        console.log('⏳ Waiting for SalesforceInteractions and c360a...');
-      }
-    }, 200);
-  </script>
-</body>
-</html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>Arctic Fashion</title>
+   <style>
+     * {
+       box-sizing: border-box;
+     }
+ 
+     body {
+       margin: 0;
+       font-family: 'Segoe UI', sans-serif;
+       background-color: #f4f4f4;
+     }
+ 
+     /* Navigation */
+     nav {
+       background-color: #1a1a1a;
+       padding: 0.5em 1.5em;
+     }
+ 
+     .nav-container {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       max-width: 1200px;
+       margin: 0 auto;
+       flex-wrap: wrap;
+     }
+ 
+     .logo img {
+       height: 60px; /* Made the logo bigger */
+     }
+ 
+     .hamburger {
+       display: none;
+       background: none;
+       border: none;
+       font-size: 2rem;
+       color: white;
+       cursor: pointer;
+     }
+ 
+     .nav-links {
+       display: flex;
+       align-items: center;
+       gap: 1.5em;
+     }
+ 
+     .nav-links a {
+       color: white;
+       text-decoration: none;
+       font-weight: bold;
+       position: relative;
+     }
+ 
+     .nav-links a:hover {
+       text-decoration: underline;
+     }
+ 
+     /* Dropdown */
+     .dropdown {
+       position: relative;
+     }
+ 
+     .dropdown-content {
+       display: none;
+       position: absolute;
+       top: 100%;
+       left: 0;
+       background-color: white;
+       min-width: 180px;
+       box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+       z-index: 1000;
+       text-align: left;
+     }
+ 
+     .dropdown:hover .dropdown-content {
+       display: block;
+     }
+ 
+     .dropdown-content a {
+       color: #333;
+       padding: 0.75em 1em;
+       display: block;
+       text-decoration: none;
+       white-space: nowrap;
+     }
+ 
+     .dropdown-content a:hover {
+       background-color: #f4f4f4;
+     }
+ 
+     /* Responsive Nav */
+     @media (max-width: 900px) {
+       .nav-container {
+         flex-direction: row;
+         flex-wrap: wrap;
+       }
+ 
+       .hamburger {
+         display: block;
+       }
+ 
+       .nav-links {
+         display: none;
+         flex-direction: column;
+         width: 100%;
+         background-color: #1a1a1a;
+         padding: 1em;
+         margin-top: 1em;
+       }
+ 
+       .nav-links a {
+         margin: 0.5em 0;
+       }
+ 
+       .nav-links.show {
+         display: flex;
+       }
+ 
+       .dropdown-content {
+         position: static;
+         box-shadow: none;
+       }
+ 
+       .dropdown:hover .dropdown-content {
+         display: none;
+       }
+ 
+       .dropdown.open .dropdown-content {
+         display: block;
+       }
+     }
+ 
+     /* Banner */
+     .banner {
+       background-image: url('https://github.com/millahallanoro/demo/blob/main/hero_banner2.png?raw=true'); /* Replace with your actual path */
+       background-size: cover;
+       background-position: center;
+       height: 300px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       color: white;
+       text-shadow: 1px 1px 4px #000;
+     }
+ 
+     .banner h1 {
+       font-size: 2.5rem;
+     }
+ 
+     .content {
+       padding: 2em;
+       text-align: center;
+       max-width: 1200px;
+       margin: auto;
+     }
+ 
+     .categories {
+       display: flex;
+       justify-content: space-between;
+       gap: 1.5em;
+       margin-top: 3em;
+       flex-wrap: wrap;
+     }
+ 
+     .category {
+       flex: 1;
+       background-color: white;
+       padding: 1em;
+       border-radius: 8px;
+       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+       text-align: center;
+       min-width: 280px;
+     }
+ 
+     .category img {
+       max-width: 100%;
+       height: auto;
+       border-radius: 4px;
+     }
+ 
+     .category h3 {
+       margin-top: 1em;
+       font-size: 1.2em;
+       color: #333;
+     }
+ 
+     .category p {
+       color: #555;
+       font-size: 0.95em;
+     }
+ 
+     .button {
+       display: inline-block;
+       margin-top: 1em;
+       padding: 0.6em 1.2em;
+       background-color: #6f6d8e;
+       color: white;
+       text-decoration: none;
+       border-radius: 4px;
+       font-weight: bold;
+     }
+ 
+     .button:hover {
+       background-color: #5e5c79;
+     }
+ 
+     footer {
+       background-color: #1a1a1a;
+       color: #ccc;
+       text-align: center;
+       padding: 1em;
+       margin-top: 3em;
+     }
+ 
+     .trending {
+   margin-top: 4em;
+   text-align: center;
+ }
+ 
+ .trending h2 {
+   font-size: 1.8em;
+   margin-bottom: 1em;
+   color: #333;
+ }
+ 
+ .trending-products {
+   display: flex;
+   justify-content: space-between;
+   gap: 1.5em;
+   flex-wrap: wrap;
+ }
+ 
+ .product-card {
+   background-color: white;
+   flex: 1;
+   min-width: 280px;
+   padding: 1em;
+   border-radius: 8px;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+   text-align: center;
+ }
+ 
+ .product-card img {
+   width: 100%;
+   border-radius: 4px;
+ }
+ 
+ .product-card h3 {
+   margin-top: 1em;
+   font-size: 1.2em;
+   color: #333;
+ }
+ 
+ .product-card p {
+   color: #555;
+   font-size: 0.95em;
+ }
+     #cart-count {
+   background-color: #cc4444;
+   color: white;
+   padding: 0.1em 0.5em;
+   border-radius: 12px;
+   font-size: 0.85em;
+   margin-left: 0.3em;
+ }
+ 
+ 
+   </style>
+ <script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
+ 
+ 
+ 
+ </head>
+ <body>
+ 
+   <!-- Navigation -->
+   <nav>
+     <div class="nav-container">
+       <a href="index.html" class="logo">
+         <img src="https://github.com/millahallanoro/demo/blob/main/Arctic%20Fashion%20Logo%20NEW2%20white%20text.png?raw=true" alt="Arctic Fashion Logo">
+       </a>
+ 
+       <button class="hamburger" onclick="toggleMenu()">☰</button>
+ 
+      <div class="nav-links" id="navLinks">
+   <a href="index.html">Home</a>
+   <div class="dropdown">
+     <a href="products.html" onclick="toggleDropdown(event)">Products ▾</a>
+     <div class="dropdown-content">
+       <a href="products-jackets.html">Winter Jackets</a>
+       <a href="products-sweaters.html">Wool Sweaters</a>
+       <a href="products-accessories.html">Accessories</a>
+     </div>
+   </div>
+   <a href="about.html">About</a>
+   <a href="loyalty.html">Loyalty</a>
+   <a href="cart.html">View Cart (<span id="cart-count">0</span>)</a>
+ 
+ </div>
+     </div>
+   </nav>
+ 
+   <!-- Banner -->
+   <div class="banner">
+     <h1>Arctic Fashion</h1>
+   </div>
+ 
+   <!-- Main Content -->
+   <div class="content">
+     <h2>Where Style Meets the Cold</h2>
+     <p>Welcome to Arctic Fashion – your destination for sustainable and stylish fashion inspired by the beauty of the North. ❄️</p>
+     <p>Explore our latest winter collection and feel the Arctic vibe wherever you go.</p>
+ 
+     <!-- Category Cards -->
+     <div class="categories">
+       <div class="category" id="winter-jackets">
+         <img src="https://github.com/millahallanoro/demo/blob/main/winter-jacket.png?raw=true" alt="Winter Jackets">
+         <h3>Winter Jackets</h3>
+         <p>Stay warm with our eco-friendly, windproof jackets made for Arctic conditions.</p>
+         <a href="products-jackets.html" class="button">View Products</a>
+       </div>
+       <div class="category" id="wool-sweaters">
+         <img src="https://github.com/millahallanoro/demo/blob/main/wool_sweater.png?raw=true" alt="Wool Sweaters">
+         <h3>Wool Sweaters</h3>
+         <p>Natural warmth and Nordic design come together in our 100% wool collection.</p>
+           <a href="products-sweaters.html" class="button">View Products</a>
+       </div>
+       <div class="category" id="accessories">
+         <img src="https://github.com/millahallanoro/demo/blob/main/accessories.png?raw=true">
+         <h3>Accessories</h3>
+         <p>Finish your look with our soft beanies, scarves, and thermal gloves.</p>
+           <a href="products-accessories.html" class="button">View Products</a>
+       </div>
+     </div>
+   </div>
+ 
+   <!-- Video and Text Section -->
+ <div class="content video-section">
+   <div class="video-text-wrapper">
+     <!-- Video (left) -->
+     <div class="video-column">
+       <video controls width="100%" style="border-radius: 8px;">
+         <source src="arctic-fashion_video.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+       </video>
+     </div>
+ 
+     <!-- Text (right) -->
+     <div class="text-column">
+       <h1>The Arctic Fashion Experience</h1>
+       <p>Discover how our collections are inspired by nature, crafted with sustainability, and designed to stand the test of Arctic conditions. Learn about our materials, mission, and what makes our brand different through this short story.</p>
+     </div>
+   </div>
+ </div>
+ 
+ 
+ 
+ <!-- Trending Now Section -->
+ <div class="content">
+   <div class="trending">
+     <h2>Trending Now</h2>
+     <div class="trending-products">
+       <div class="product-card">
+         <img src="https://source.unsplash.com/400x250/?jacket,hood" alt="Arctic Storm Jacket">
+         <h3>Arctic Storm Jacket</h3>
+         <p>Our most popular hooded jacket for sub-zero adventures.</p>
+       </div>
+       <div class="product-card">
+         <img src="https://source.unsplash.com/400x250/?coat,winter" alt="Nordic Wool Coat">
+         <h3>Nordic Wool Coat</h3>
+         <p>Elegance meets insulation. A timeless winter essential.</p>
+       </div>
+       <div class="product-card">
+         <img src="https://source.unsplash.com/400x250/?boots,snow" alt="Insulated Snow Boots">
+         <h3>Insulated Snow Boots</h3>
+         <p>Pair your jacket with our ultra-warm, waterproof boots.</p>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ 
+ 
+   <!-- Footer -->
+ <footer>
+   <div class="footer-content">
+     <div class="footer-brand">
+       <h3>Arctic Fashion</h3>
+       <p>Where style meets the cold. Designed in the North.</p>
+     </div>
+ 
+     <div class="footer-contact">
+       <h4>Contact Us</h4>
+       <p>Arctic Fashion Oy</p>
+       <p>Northern Lights Street 12</p>
+       <p>00100 Helsinki, Finland</p>
+       <p>📞 +358 40 123 4567</p>
+       <p>✉️ hello@arcticfashion.com</p>
+     </div>
+ 
+     <div class="footer-social">
+       <h4>Follow Us</h4>
+       <p>
+         <a href="#">Instagram</a> |
+         <a href="#">Facebook</a> |
+         <a href="#">LinkedIn</a>
+       </p>
+     </div>
+   </div>
+   <p class="footer-bottom">&copy; 2025 Arctic Fashion. All rights reserved.</p>
+ </footer>
+ 
+   <!-- JavaScript for menu toggle -->
+   <script>
+     function toggleMenu() {
+       document.getElementById('navLinks').classList.toggle('show');
+     }
+ 
+     function toggleDropdown(event) {
+       event.preventDefault();
+       const dropdown = event.target.closest('.dropdown');
+       dropdown.classList.toggle('open');
+     }
+   </script>
+   <script>
+   function updateCartCount() {
+     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+     const count = cart.length;
+     const cartCountElement = document.getElementById('cart-count');
+     if (cartCountElement) {
+       cartCountElement.textContent = count;
+     }
+   }
+ 
+   // Run it on page load
+   updateCartCount();
+ </script>
+ 
+   <script>
+   window.addEventListener('DOMContentLoaded', () => {
+     const waitForSalesforce = setInterval(() => {
+       if (window.SalesforceInteractions && typeof c360a === 'function') {
+         clearInterval(waitForSalesforce);
+ 
+ <script>
+         SalesforceInteractions.init({
+           consents: [{
+             provider: 'OneTrust',
+             purpose: 'Tracking',
+             status: SalesforceInteractions.ConsentStatus.OptIn
+           }]
+         }).then(() => {
+           console.log('✅ Salesforce Beacon initialized');
+ 
+           const event = {
+             eventType: 'pageView',
+             eventId: crypto.randomUUID(),
+             dateTime: new Date().toISOString(),
+             category: 'browse',
+             interactionName: 'Home Page View',
+             deviceId: c360a('getDeviceId'),
+             sessionId: c360a('getSessionId'),
+             pageName: 'Home',
+             pageType: 'landing',
+             pageUrl: window.location.href
+           };
+ 
+           c360a('sendEvent', event);
+           console.log('📡 Event sent:', event);
+           console.log('Event sent:', event);
+         });
+       } else {
+         console.log('⏳ Waiting for SalesforceInteractions and c360a...');
+         console.log('Waiting for SalesforceInteractions and c360a...');
+       }
+     }, 100);
+   });
+ </script>
+ 
+   </script>
+ 
+ 
+ 
+ 
+ </body>
+ </html>
