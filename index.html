@@ -457,23 +457,26 @@
 </script>
 
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const event = {
-      eventType: "pageView",
-      eventId: crypto.randomUUID(),
-      dateTime: new Date().toISOString(),
-      category: "browse",
-      interactionName: "Home Page View",
-      deviceId: c360a('getDeviceId'),
-      sessionId: c360a('getSessionId'),
-      pageName: "Home",
-      pageType: "landing",
-      pageUrl: window.location.href
-    };
-
-    c360a('sendEvent', 'browse', event);
+  window.addEventListener('load', function () {
+    if (typeof c360a !== 'undefined') {
+      c360a('sendEvent', {
+        type: 'browse',
+        category: 'Engagement',
+        eventType: 'view',
+        eventId: 'browse-' + Date.now(),
+        dateTime: new Date().toISOString(),
+        deviceId: 'web-' + Math.random().toString(36).substring(2),
+        sessionId: 'sess-' + Math.random().toString(36).substring(2),
+        pageName: 'Homepage',
+        pageType: 'landing',
+        pageUrl: window.location.href
+      });
+    } else {
+      console.warn('c360a beacon not loaded yet.');
+    }
   });
 </script>
+
 
 </body>
 </html>
