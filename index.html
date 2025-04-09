@@ -273,18 +273,6 @@
   </style>
 <script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
 
-<script>
-      SalesforceInteractions.init({
-        consents: [{
-          provider: 'OneTrust',
-          purpose: 'Tracking',
-          status: SalesforceInteractions.ConsentStatus.OptIn
-        }]
-      }).then(() => {
-        console.log('init successful');
-  });
-</script>
-
 
 
 </head>
@@ -452,6 +440,42 @@
   // Run it on page load
   updateCartCount();
 </script>
+
+  <script>
+    const waitForBeacon = setInterval(() => {
+      if (typeof SalesforceInteractions !== 'undefined' && typeof c360a === 'function') {
+        clearInterval(waitForBeacon);
+
+        SalesforceInteractions.init({
+          consents: [{
+            provider: 'OneTrust',
+            purpose: 'Tracking',
+            status: SalesforceInteractions.ConsentStatus.OptIn
+          }]
+        }).then(() => {
+          console.log('✅ Salesforce Beacon initialized');
+
+          const event = {
+            eventType: "pageView",
+            eventId: crypto.randomUUID(),
+            dateTime: new Date().toISOString(),
+            category: "browse",
+            interactionName: "Home Page View",
+            deviceId: c360a('getDeviceId'),
+            sessionId: c360a('getSessionId'),
+            pageName: "Home",
+            pageType: "landing",
+            pageUrl: window.location.href
+          };
+
+          c360a('sendEvent', event);
+          console.log('📡 Event sent:', event);
+        });
+      } else {
+        console.log('⏳ Waiting for SalesforceInteractions and c360a...');
+      }
+    }, 100);
+  </script>
 
 
 
