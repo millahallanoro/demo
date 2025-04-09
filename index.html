@@ -271,17 +271,23 @@
 
 
   </style>
-<script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js">
-</script>
+<script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js" defer></script>
+
   <script>
-    SalesforceInteractions.init({
-      consents: [{
-        provider: 'OneTrust',
-        purpose: 'Tracking',
-        status: SalesforceInteractions.ConsentStatus.OptIn
-      }]
-    }).then(()=>{
-      console.log('init successful');
+    window.addEventListener('load', function () {
+      if (typeof SalesforceInteractions !== 'undefined') {
+        SalesforceInteractions.init({
+          consents: [{
+            provider: 'OneTrust',
+            purpose: 'Tracking',
+            status: SalesforceInteractions.ConsentStatus.OptIn
+          }]
+        }).then(() => {
+          console.log('init successful');
+        });
+      } else {
+        console.warn('SalesforceInteractions not loaded yet');
+      }
     });
   </script>
 </head>
