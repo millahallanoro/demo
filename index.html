@@ -273,9 +273,12 @@
   </style>
 <script defer src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
 
-  <script>
-    window.addEventListener('load', function () {
+<script>
+  window.addEventListener('load', function () {
+    const waitForBeacon = setInterval(() => {
       if (typeof SalesforceInteractions !== 'undefined') {
+        clearInterval(waitForBeacon);
+
         SalesforceInteractions.init({
           consents: [{
             provider: 'OneTrust',
@@ -284,12 +287,17 @@
           }]
         }).then(() => {
           console.log('init successful');
+        }).catch((err) => {
+          console.error('Init failed:', err);
         });
+
       } else {
-        console.warn('SalesforceInteractions not loaded yet');
+        console.log('Waiting for SalesforceInteractions...');
       }
-    });
-  </script>
+    }, 100); // Check every 100ms
+  });
+</script>
+
 </head>
 <body>
 
