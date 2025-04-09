@@ -271,36 +271,17 @@
 
 
   </style>
-<script defer src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
+<script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
 
 <script>
-  window.addEventListener('load', function () {
-    if (typeof SalesforceInteractions !== 'undefined') {
       SalesforceInteractions.init({
         consents: [{
           provider: 'OneTrust',
           purpose: 'Tracking',
           status: SalesforceInteractions.ConsentStatus.OptIn
         }]
-      }).then(() => {
+      }).then(() =>{
         console.log('init successful');
-
-        // Example event
-        c360a('sendEvent', {
-          type: 'browse',
-          category: 'Engagement',
-          eventType: 'pageView',
-          sessionId: 'my-session-id',
-          deviceId: 'my-device-id',
-          dateTime: new Date().toISOString(),
-          eventId: crypto.randomUUID?.() || Date.now().toString(),
-          pageName: 'Home',
-          pageUrl: window.location.href
-        });
-      });
-    } else {
-      console.warn('SalesforceInteractions not loaded yet');
-    }
   });
 </script>
 
