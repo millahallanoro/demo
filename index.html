@@ -274,10 +274,11 @@
 <script defer src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
 
 <script>
-  window.addEventListener('load', function () {
-    const waitForBeacon = setInterval(() => {
-      if (typeof SalesforceInteractions !== 'undefined') {
-        clearInterval(waitForBeacon);
+  window.addEventListener('DOMContentLoaded', () => {
+    // Wait for the beacon to be ready
+    const waitForSalesforce = setInterval(() => {
+      if (window.SalesforceInteractions && typeof c360a === 'function') {
+        clearInterval(waitForSalesforce);
 
         SalesforceInteractions.init({
           consents: [{
@@ -286,17 +287,31 @@
             status: SalesforceInteractions.ConsentStatus.OptIn
           }]
         }).then(() => {
-          console.log('init successful');
-        }).catch((err) => {
-          console.error('Init failed:', err);
-        });
+          console.log('Salesforce Beacon initialized.');
 
+          const event = {
+            eventType: "pageView",
+            eventId: crypto.randomUUID(),
+            dateTime: new Date().toISOString(),
+            category: "browse",
+            interactionName: "Home Page View",
+            deviceId: c360a('getDeviceId'),
+            sessionId: c360a('getSessionId'),
+            pageName: "Home",
+            pageType: "landing",
+            pageUrl: window.location.href
+          };
+
+          c360a('sendEvent', event);
+          console.log('Event sent:', event);
+        });
       } else {
-        console.log('Waiting for SalesforceInteractions...');
+        console.log('Waiting for SalesforceInteractions and c360a...');
       }
-    }, 100); // Check every 100ms
+    }, 100);
   });
 </script>
+
 
 </head>
 <body>
