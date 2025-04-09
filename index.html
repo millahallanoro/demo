@@ -453,42 +453,6 @@
   updateCartCount();
 </script>
 
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    if (window.SalesforceInteractions) {
-      SalesforceInteractions.init({
-        consents: [{
-          provider: 'OneTrust',
-          purpose: 'Tracking',
-          status: SalesforceInteractions.ConsentStatus.OptIn
-        }]
-      }).then(() => {
-        const deviceId = c360a('getDeviceId');
-        const sessionId = c360a('getSessionId');
-
-        const event = {
-          eventType: "pageView",
-          eventId: crypto.randomUUID(),
-          dateTime: new Date().toISOString(),
-          category: "browse",
-          interactionName: "Home Page View",
-          deviceId: deviceId,
-          sessionId: sessionId,
-          pageName: "Home",
-          pageType: "landing",
-          pageUrl: window.location.href
-        };
-
-        // Send the event
-        c360a('sendEvent', event);
-        console.log('Event sent to Data Cloud:', event);
-      });
-    } else {
-      console.error('SalesforceInteractions not loaded');
-    }
-  });
-</script>
-
 
 
 
