@@ -268,6 +268,56 @@
    font-size: 0.85em;
    margin-left: 0.3em;
  }
+     .arctic-form-container {
+    max-width: 600px;
+    margin: 3em auto;
+    padding: 2em;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .arctic-form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1em;
+  }
+
+  .arctic-form-container label {
+    display: block;
+    margin-top: 1em;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .arctic-form-container input[type="text"],
+  .arctic-form-container input[type="email"] {
+    width: 100%;
+    padding: 0.6em;
+    margin-top: 0.4em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+  }
+
+  .arctic-form-container input[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 2em;
+    padding: 0.8em;
+    background-color: #6f6d8e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .arctic-form-container input[type="submit"]:hover {
+    background-color: #5e5c79;
+  }
  
  
    </style>
@@ -368,6 +418,33 @@
      </div>
    </div>
  </div>
+
+<!-- Form Content -->
+  <div class="arctic-form-container">
+  <h2>Stay in the Arctic Loop ❄️</h2>
+  <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DKj00000EAXq9" method="POST">
+
+    <input type="hidden" name="oid" value="00DKj00000EAXq9">
+    <input type="hidden" name="retURL" value="https://millahallanoro.github.io/demo/index.html">
+
+    <label for="first_name">First Name</label>
+    <input id="first_name" maxlength="40" name="first_name" type="text" />
+
+    <label for="last_name">Last Name</label>
+    <input id="last_name" maxlength="80" name="last_name" type="text" />
+
+    <label for="email">Email</label>
+    <input id="email" maxlength="80" name="email" type="email" />
+
+    <label for="company">Company</label>
+    <input id="company" maxlength="40" name="company" type="text" />
+
+    <label for="country">Country</label>
+    <input id="country" maxlength="40" name="country" type="text" />
+
+    <input type="submit" name="submit" value="Join Now">
+  </form>
+</div>
  
  
  
