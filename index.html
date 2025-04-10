@@ -450,7 +450,32 @@
  
    // Run it on page load
    updateCartCount();
+    
  </script>
+
+      SalesforceInteractions.init({
+        consents: [{
+          provider: 'OneTrust',
+          purpose: 'Tracking',
+          status: SalesforceInteractions.ConsentStatus.OptIn
+        }]
+      }).then(() => {
+        const event = {
+          eventType: 'browse',
+          category: 'browse',
+          interactionName: 'Home Page View',
+          pageName: 'Home',
+          pageType: 'landing',
+          pageUrl: window.location.href
+        };
+
+        c360a('sendEvent', event);
+        console.log('📡 Event sent:', event);
+      });
+    }
+  }, 100);
+});
+
 
 
 
