@@ -322,7 +322,7 @@
  
    </style>
 
-  <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+ 
   
  <script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js"></script>
   <script>
@@ -337,7 +337,7 @@
                 });
      </script>
  
- 
+  <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
  
  </head>
  <body>
@@ -533,8 +533,26 @@
     
  </script>
 
+  <script>
 
+SalesforceInteractions.sendEvent({
+  interaction: {
+    name: 'Browse page',
+    catalogObject: {
+      type: 'browse',
+      attributes: {
+        pageName: 'Home page',
+        pageType: 'Home page',
+        pageUrl: 'https://millahallanoro.github.io/demo/index.html',
+        pageView: 1
+      }
+    }
+  },
+  eventType: 'browse',
+  category: 'browse'
+});
 
+</script>
 
 
 
