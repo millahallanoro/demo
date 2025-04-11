@@ -536,20 +536,18 @@
  </script>
 
   <script>
-
-SalesforceInteractions.sendEvent({
-  interaction: {
-    Name: 'Browse page',
-    pageType: 'browse',
-    pageName: 'Home page',
-    pageType: 'Home page',
-    pageUrl: 'https://millahallanoro.github.io/demo/index.html',
-    pageView: 1
-      }
-}).then(() => {
-    console.log('Event sent:', event);
-                });
-</script>
+    window.addEventListener('load', () => {
+        const event = {
+          eventType: 'browse',
+          category: 'browse',
+          interactionName: 'Home Page View',
+          pageName: 'Home',
+          pageType: 'landing',
+          pageUrl: window.location.href,
+        };
+        console.log('📡 Browse event sent:', event);
+    });
+  </script>
 
 
 
