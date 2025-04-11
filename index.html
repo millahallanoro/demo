@@ -539,21 +539,16 @@
 
 SalesforceInteractions.sendEvent({
   interaction: {
-    name: 'Browse page',
-    catalogObject: {
-      type: 'browse',
-      attributes: {
-        pageName: 'Home page',
-        pageType: 'Home page',
-        pageUrl: 'https://millahallanoro.github.io/demo/index.html',
-        pageView: 1
+    Name: 'Browse page',
+    pageType: 'browse',
+    pageName: 'Home page',
+    pageType: 'Home page',
+    pageUrl: 'https://millahallanoro.github.io/demo/index.html',
+    pageView: 1
       }
-    }
-  },
-  eventType: 'browse',
-  category: 'browse'
-});
-
+}).then(() => {
+    console.log('init successful');
+                });
 </script>
 
 
