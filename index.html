@@ -335,9 +335,20 @@
      status: SalesforceInteractions.ConsentStatus.OptIn
     }]
    }).then(() => {
-    console.log('init successful');
-                });
-     </script>
+    const event = {
+      eventType: 'browse',
+      category: 'Engagement',
+      interactionName: 'Home Page View',
+      pageName: document.title || 'Home',
+      pageType: 'landing',
+      pageUrl: window.location.href,
+      pageView: 1
+    };
+
+    c360a('sendEvent', event);
+    console.log('📡 Browse event sent:', event);
+  });
+  </script>
  
   <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
  
