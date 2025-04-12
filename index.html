@@ -536,6 +536,26 @@
  </script>
 
   <script>
+
+   SalesforceInteractions.sendEvent({
+  user: {
+    attributes: {
+      firstName: 'Milla',
+      lastName: 'Magia',
+      email: 'milla.magia@example.com',   // included here
+      eventType: 'identity',
+      isAnonymous: 0
+    }
+  }
+});
+console.log('Identity event sent:', event);
+});
+
+   SalesforceInteractions.sendEvent({
+    interaction: {
+        name: 'integration_hook_test'
+    }
+})
     window.addEventListener('load', () => {
         const event = {
           eventType: 'browse',
