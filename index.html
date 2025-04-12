@@ -537,19 +537,20 @@
 
   <script>
 
-   SalesforceInteractions.sendEvent({
+ SalesforceInteractions.sendEvent({
   user: {
     attributes: {
       firstName: 'Milla',
       lastName: 'Magia',
-      email: 'milla.magia@example.com',   // included here
+      email: 'milla.magia@example.com', // included here
       eventType: 'identity',
       isAnonymous: 0
     }
   }
 });
-console.log('Identity event sent:', event);
-});
+
+console.log('Identity event sent');
+
 
    SalesforceInteractions.sendEvent({
     interaction: {
