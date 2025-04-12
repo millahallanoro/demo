@@ -546,9 +546,10 @@
       eventType: 'identity',
       isAnonymous: 0
     }
-  };
-  console.log('Identity event sent');
-});
+  }
+  }).then(() => {
+    console.log('init successful');
+  });
 
 
 
