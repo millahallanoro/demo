@@ -538,6 +538,7 @@
   <script>
 
 SalesforceInteractions.sendEvent({
+ interaction: { 
   eventType: 'browse',
   category: 'Engagement', // or whatever value you use to categorize events
   interactionName: 'Home Page View', // optional
@@ -545,6 +546,7 @@ SalesforceInteractions.sendEvent({
   pageType: 'landing', // optional
   pageUrl: window.location.href, // optional
   pageView: 1, // optional
+ }
   }).then(() => {
     console.log('Browse event sent', event);
   });
