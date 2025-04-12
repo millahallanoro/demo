@@ -545,7 +545,11 @@
      pageUrl: 'https://millahallanoro.github.io/demo/index.html',
      pageView: '1'
     }
-  },
+  }).then(() => {
+    console.log('Browse event sent', event);
+  });
+   
+SalesforceInteractions.sendEvent({  
   user: {
     attributes: {
       firstName: 'Milla',
