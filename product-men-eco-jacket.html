@@ -152,7 +152,7 @@ Wear it with pride. Wear it with purpose.</p>
     </div>
   </div>
 
- <script>
+  <script>
   document.querySelector('button').addEventListener('click', () => {
     const size = document.getElementById('size').value;
 
@@ -171,6 +171,29 @@ Wear it with pride. Wear it with purpose.</p>
     // Send event to Data Cloud
     SalesforceInteractions.sendEvent({
       interaction: {
+      name: "View Catalog Object",
+      catalogObject: {
+        type: "Product",
+        id: "MENS_ECO_JACKET_001",
+        category: 'Engagement',
+        attributeProductName: product.name,
+        attributeProductImageUrl: product.image,
+        attributeSize: product.size,
+        productUrl: window.location.href
+      }
+    };
+    
+    alert('Product added to cart!');
+  });
+</script>
+
+
+
+ <script>  
+
+    // Send event to Data Cloud
+    SalesforceInteractions.sendEvent({
+      interaction: {
         name: "View Catalog Object",
         catalogObject: {
           type: "Product",
@@ -183,8 +206,6 @@ Wear it with pride. Wear it with purpose.</p>
         }
       }
     });
-  });
-     alert('Product added to cart!');
 </script>
 
 
