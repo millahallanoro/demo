@@ -590,9 +590,17 @@ SalesforceInteractions.sendEvent({
     });
 
     SalesforceInteractions.sendEvent({
+    pageView : {
+        name : "Browse Page",
+        pageName: "Home Page"
+    }
+    });
+
+   
+    SalesforceInteractions.sendEvent({
     interaction : {
         name : "Browse Page",
-        Browse: {
+        BrowseEvent: {
           pageName : "Home page"
         }
     }
