@@ -600,8 +600,9 @@ SalesforceInteractions.sendEvent({
     SalesforceInteractions.sendEvent({
     interaction : {
         name : "BrowsePage",
-        BrowseEvent: {
-          pageName : "Homepage"
+        pageView: {
+          pageName : "Homepage",
+          pageUrl: "testing"
         }
     }
     });
