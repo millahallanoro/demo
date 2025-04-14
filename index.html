@@ -592,9 +592,12 @@ SalesforceInteractions.sendEvent({
     SalesforceInteractions.sendEvent({
     interaction : {
         name : "browse",
-        pageName: "HomePage1",
+        pageName: "HomePage",
         category: "Engagement",
-        eventType: "browse"
+        eventType: "browse",
+        pageType: "HomePage",
+        pageView: "1",
+        pageUrl: window.location.href
     }
     });
 
