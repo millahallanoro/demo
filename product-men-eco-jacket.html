@@ -176,10 +176,12 @@ Wear it with pride. Wear it with purpose.</p>
           type: "Product",
           id: "MENS_ECO_JACKET_001",
           category: 'Engagement',
-          attributeProductName: product.name,
-          attributeProductImageUrl: product.image,
-          attributeSize: product.size,
-          productUrl: window.location.href
+          attributes: {
+            productName: product.name,
+            productImageUrl: product.image,
+            size: product.size,
+            productUrl: window.location.href
+          }
         }
       }
     });
@@ -188,7 +190,18 @@ Wear it with pride. Wear it with purpose.</p>
   });
 </script>
 
-
+ SalesforceInteractions.sendEvent({
+    interaction : {
+        name : "View Catalog Object",
+        catalogObject: {
+          type : "Product",
+          id : "65e4e737",
+          attributes: {
+            description: "Shoes"
+          }
+        }
+    }
+    });
 
 
 </body>
