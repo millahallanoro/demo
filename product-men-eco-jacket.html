@@ -182,20 +182,23 @@ Wear it with pride. Wear it with purpose.</p>
     // Send event to Data Cloud
     SalesforceInteractions.sendEvent({
       interaction: {
-      name: "View Catalog Object",
-      catalogObject: {
-        type: "Product",
-        id: "MENS_ECO_JACKET_001",
-        category: 'Engagement',
-        attributeProductName: product.name,
-        attributeProductImageUrl: product.image,
-        attributeSize: product.size,
-        productUrl: window.location.href
+        name: "View Catalog Object",
+        catalogObject: {
+          type: "Product",
+          id: "MENS_ECO_JACKET_001",
+          category: 'Engagement',
+          attributeProductName: product.name,
+          attributeProductImageUrl: product.image,
+          attributeSize: product.size,
+          productUrl: window.location.href
+        }
+      }
     });
 
     alert('Product added to cart!');
   });
 </script>
+
 
 
 </body>
