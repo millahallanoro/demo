@@ -179,6 +179,9 @@ Wear it with pride. Wear it with purpose.</p>
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
 
+        alert('Product added to cart!');
+
+
     // Send event to Data Cloud
     SalesforceInteractions.sendEvent({
       interaction: {
@@ -193,9 +196,8 @@ Wear it with pride. Wear it with purpose.</p>
           productUrl: window.location.href
         }
       }
-    });
+    };
 
-    alert('Product added to cart!');
   });
 </script>
 
