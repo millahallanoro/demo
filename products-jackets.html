@@ -269,5 +269,17 @@
     }
   </script>
 
+  SalesforceInteractions.sendEvent({
+    interaction : {
+        name : "browse",
+        pageName: "ProductsJackets",
+        category: "Engagement",
+        eventType: "browse",
+        pageType: "ProductPage",
+        pageView: "1",
+        pageUrl: window.location.href
+    }
+    });
+
 </body>
 </html>
