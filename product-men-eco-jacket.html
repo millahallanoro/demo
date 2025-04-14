@@ -113,18 +113,7 @@
      purpose: 'Tracking',
      status: SalesforceInteractions.ConsentStatus.OptIn
     }]
-   }).then(() => {
-    const event = {
-      eventType: 'browse',
-      category: 'Engagement',
-      interactionName: 'Home Page View',
-      pageName: document.title || 'Home',
-      pageType: 'landing',
-      pageUrl: window.location.href,
-      pageView: 1
-    };
-    console.log('📡 Browse event sent:', event);
-  });
+   })
   </script>
 </head>
 <body>
