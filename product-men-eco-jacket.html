@@ -103,6 +103,29 @@
       }
     }
   </style>
+  <script src="https://cdn.c360a.salesforce.com/beacon/c360a/d9c07807-867b-41e9-8131-d317aa019ff7/scripts/c360a.min.js">
+ </script>
+  
+  <script>
+   SalesforceInteractions.init({
+    consents: [{
+     provider: 'OneTrust',
+     purpose: 'Tracking',
+     status: SalesforceInteractions.ConsentStatus.OptIn
+    }]
+   }).then(() => {
+    const event = {
+      eventType: 'browse',
+      category: 'Engagement',
+      interactionName: 'Home Page View',
+      pageName: document.title || 'Home',
+      pageType: 'landing',
+      pageUrl: window.location.href,
+      pageView: 1
+    };
+    console.log('📡 Browse event sent:', event);
+  });
+  </script>
 </head>
 <body>
 
@@ -140,9 +163,10 @@ Wear it with pride. Wear it with purpose.</p>
     </div>
   </div>
 
-  <script>
+ <script>
   document.querySelector('button').addEventListener('click', () => {
     const size = document.getElementById('size').value;
+
     const product = {
       name: "Men's Eco Jacket",
       size: size,
@@ -150,11 +174,26 @@ Wear it with pride. Wear it with purpose.</p>
       quantity: 1
     };
 
+    // Save to local storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    alert('Product added to cart!'); 
+    // Send event to Data Cloud
+    SalesforceInteractions.sendEvent({
+      interaction: {
+      name: "View Catalog Object"
+      catalogObject: {
+        type: "Product"
+        id: "MENS_ECO_JACKET_001",
+        category: 'Engagement',
+        attributeProductName: product.name,
+        attributeProductImageUrl: product.image,
+        attributeSize: product.size,
+        productUrl: window.location.href
+    });
+
+    alert('Product added to cart!');
   });
 </script>
 
